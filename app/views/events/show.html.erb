@@ -1,5 +1,20 @@
-<h1>Event's Show Page</h1>
+<!DOCTYPE html>
+<html lang="en">
 
-- video player
-- location (ideally translated from coordinates to street address)
-- user's name and contact info
+<h1><%= "#{@user.first_name + " " + @user.last_name}" %></h1>
+
+
+<div id=user_info>
+  <ul>
+  	<li>Phone: <%= @user.phone_number %></li>
+  	<li>Location: </li>
+  </ul>
+</div>
+
+<div id=stream>
+	<iframe height="360px" width="640px" src="http://172.16.51.60:3000/feed" name="iframe_a"></iframe>
+</div>
+
+
+</html>
+

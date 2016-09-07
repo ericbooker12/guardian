@@ -1,13 +1,13 @@
 class EventsController < ApplicationController
-
+	# before_action :all_tasks, only: [:index, :create]
+	# respond_to :html, :js
 
 	def index
 		@events = current_user.events
+		render :layout => false
 	end
 
 	def create
-		p "in the create route"
-		p "*" * 50
 		@event = Event.new(user_id: current_user.id, drone_id: 1)
 
 		# To include drone_id in event
@@ -24,21 +24,10 @@ class EventsController < ApplicationController
 
 		if @event.save
 			# get location data from phone (add to event table)
-			# send text message to friend which includes link for friend to watch livestream/video and location data
 
-			# We'll get back a url to include text msg
-
-		# on successful event initialization,
 			if request.xhr?
-				# json ping back to change view
 
-				# magical method to make drone start
-				'http://172.168.1.1/start'
-
-
-				# Does assigning of video address happen here or is it, more likely, updated later?
-				# trigger drone ToDo auto ToDo list
-				data.to_json
+				@event.to_json
 			else
 			end
 		else
@@ -50,9 +39,16 @@ class EventsController < ApplicationController
 	end
 
 	def edit
-		p "in the create route"
+		p "in the edit route"
 		p "*" * 50
 		edit_event_path
+	end
+
+	def show
+		@user = User.find(params[:id])
+		@event = Event.find(1)
+		event_path
+
 	end
 
 	def update

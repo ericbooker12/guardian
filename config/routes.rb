@@ -9,5 +9,9 @@ Rails.application.routes.draw do
 
   resources :events
 
+  get '/sms/text_friend' => 'sms#text_friend'
+  get '/sms/text_friend_once_home' => 'sms#text_friend_once_home'
+
+  get 'events/show' => 'event#show' 
 
 end

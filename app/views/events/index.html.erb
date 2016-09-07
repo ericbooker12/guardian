@@ -1,8 +1,10 @@
-<h1>List of all my events</h1>
+<h1>All my events</h1>
 
 <ul>
-    <% @events.each do |event| %>
-      <!--  need teacher.html.erb template -->
-      <li><%= link_to event.created_at,  event_path(event), {class:"#"} %></li>
-    <%end%>
-  </ul>
+
+  <% @events.each do |event| %>
+  <% date = event.created_at %>
+  <% formatted_date = date.strftime("%a %B %d") %>
+    <li><%= link_to formatted_date,  event_path(event), {class:"#"} %></li>
+  <%end%>
+</ul>
